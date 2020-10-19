@@ -21,10 +21,11 @@
 package com.connectsdk.discovery.provider;
 
 import android.content.Context;
-import android.support.v7.media.MediaRouteSelector;
-import android.support.v7.media.MediaRouter;
-import android.support.v7.media.MediaRouter.RouteInfo;
+
 import android.util.Log;
+
+import androidx.mediarouter.media.MediaRouteSelector;
+import androidx.mediarouter.media.MediaRouter;
 
 import com.connectsdk.core.Util;
 import com.connectsdk.discovery.DiscoveryFilter;
@@ -167,7 +168,7 @@ public class CastDiscoveryProvider implements DiscoveryProvider {
     private class MediaRouterCallback extends MediaRouter.Callback {
 
         @Override
-        public void onRouteAdded(MediaRouter router, RouteInfo route) {
+        public void onRouteAdded(MediaRouter router, MediaRouter.RouteInfo route) {
             super.onRouteAdded(router, route);
 
             CastDevice castDevice = CastDevice.getFromBundle(route.getExtras());
@@ -214,7 +215,7 @@ public class CastDiscoveryProvider implements DiscoveryProvider {
         }
 
         @Override
-        public void onRouteChanged(MediaRouter router, RouteInfo route) {
+        public void onRouteChanged(MediaRouter router, MediaRouter.RouteInfo route) {
             super.onRouteChanged(router, route);
 
             CastDevice castDevice = CastDevice.getFromBundle(route.getExtras());
@@ -252,14 +253,14 @@ public class CastDiscoveryProvider implements DiscoveryProvider {
 
         @Override
         public void onRoutePresentationDisplayChanged(MediaRouter router,
-                RouteInfo route) {
+                MediaRouter.RouteInfo route) {
             Log.d(Util.T, "onRoutePresentationDisplayChanged: [" + route.getName() + "] ["
                     + route.getDescription() + "]");
             super.onRoutePresentationDisplayChanged(router, route);
         }
 
         @Override
-        public void onRouteRemoved(final MediaRouter router, final RouteInfo route) {
+        public void onRouteRemoved(final MediaRouter router, final MediaRouter.RouteInfo route) {
             super.onRouteRemoved(router, route);
 
             CastDevice castDevice = CastDevice.getFromBundle(route.getExtras());
@@ -280,13 +281,13 @@ public class CastDiscoveryProvider implements DiscoveryProvider {
         }
 
         @Override
-        public void onRouteVolumeChanged(MediaRouter router, RouteInfo route) {
+        public void onRouteVolumeChanged(MediaRouter router, MediaRouter.RouteInfo route) {
             Log.d(Util.T, "onRouteVolumeChanged: [" + route.getName() + "] ["
                     + route.getDescription() + "]");
             super.onRouteVolumeChanged(router, route);
         }
 
-        private void removeServices(RouteInfo route) {
+        private void removeServices(MediaRouter.RouteInfo route) {
             for (String uuid : removedUUID) {
                 final ServiceDescription service = foundServices.get(uuid);
                 if (service != null) {
