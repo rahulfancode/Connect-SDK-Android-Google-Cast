@@ -62,7 +62,6 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.images.WebImage;
-
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -283,7 +282,6 @@ public class CastService extends DeviceService implements MediaPlayer, MediaCont
 
         sessions = new HashMap<String, CastWebAppSession>();
         subscriptions = new ArrayList<URLServiceSubscription<?>>();
-
         mWaitingForReconnect = false;
     }
 
@@ -569,7 +567,6 @@ public class CastService extends DeviceService implements MediaPlayer, MediaCont
         URLServiceSubscription<MediaInfoListener> request = new URLServiceSubscription<MediaInfoListener>(this, "info", null, null);
         request.addListener(listener);
         addSubscription(request);
-
         return request;
     }
 
